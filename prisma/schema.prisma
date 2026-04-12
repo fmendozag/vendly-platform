@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Product {
+  id            String   @id @default(uuid())
+
+  erpId         String   @unique   // ID del SQL Server
+  code          String             // Código visible
+  name          String
+
+  orderItems OrderItem[]
+
+  price1        Decimal  @db.Decimal(10,2)
+  price4        Decimal? @db.Decimal(10,2)
+
+  isWeighable   Boolean  // Balanza
+  isActive      Boolean
+
+  units         ProductUnit[]
+  stock         StockSnapshot?
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ProductUnit {
+  id         String   @id @default(uuid())
+
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id])
+  orderItems OrderItem[]
+
+  name       String
+  factor     Decimal  @db.Decimal(10,3)
+
+  price      Decimal  @db.Decimal(10,2)
+
+  isDefault  Boolean  @default(false)
+
+  createdAt  DateTime @default(now())
+}
+
+model StockSnapshot {
+  id            String   @id @default(uuid())
+
+  productId     String   @unique
+  product       Product  @relation(fields: [productId], references: [id])
+
+  stockReal     Decimal  @db.Decimal(12,4)
+  reserved      Decimal  @db.Decimal(12,4) @default(0)
+
+  buffer        Decimal  @db.Decimal(12,4) @default(2) // 🔥 PROTECCIÓN
+
+  updatedAt     DateTime @updatedAt
+}
+
+model Order {
+  id              String   @id @default(uuid())
+
+  status          OrderStatus
+
+  totalEstimated  Decimal  @db.Decimal(10,2)
+  totalFinal      Decimal? @db.Decimal(10,2)
+
+  needsSyncERP    Boolean  @default(true)
+  erpFacturaId    String?
+
+  items           OrderItem[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model OrderItem {
+  id          String   @id @default(uuid())
+
+  orderId     String
+  order       Order    @relation(fields: [orderId], references: [id])
+
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id])
+
+  unitId      String
+  unit        ProductUnit @relation(fields: [unitId], references: [id])
+
+  qtyRequested Decimal @db.Decimal(12,4)
+  qtyFinal     Decimal? @db.Decimal(12,4)
+
+  price        Decimal @db.Decimal(10,2)
+}
+
+model StockReservation {
+  id          String   @id @default(uuid())
+
+  productId   String
+  orderId     String
+
+  quantity    Decimal  @db.Decimal(12,4)
+
+  expiresAt   DateTime
+
+  createdAt   DateTime @default(now())
+}
+
+enum OrderStatus {
+  PENDING
+  PREPARING
+  READY
+  OUT_FOR_DELIVERY
+  COMPLETED
+  CANCELLED
+}
