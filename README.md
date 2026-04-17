@@ -1,21 +1,30 @@
-Vendly is a lightweight and scalable e-commerce platform designed to help small and local businesses sell their products online without complex setup or operational overhead.
+Vendly is a lightweight and scalable commerce platform built to solve real-world problems faced by small and local stores, especially in emerging markets.
 
-Unlike traditional e-commerce solutions, Vendly focuses on simplicity and real-world business workflows—especially in regions where many stores still operate without structured inventory systems.
+Unlike traditional e-commerce solutions designed for large inventories and standardized purchasing, Vendly is tailored for businesses that sell in flexible quantities and operate with limited or informal stock control.
 
-The platform provides a complete shopping experience, including product catalogs, shopping cart functionality, order management, and an optional stock reservation system to prevent overselling.
+The platform focuses on simplicity, speed, and accuracy—allowing customers to place orders based on real-time availability, while helping store owners reduce errors, improve order handling, and increase daily sales.
 
-Vendly is built with flexibility in mind:
+Vendly provides a complete yet practical shopping experience:
 
-It can operate as a standalone solution for businesses without existing infrastructure.
-It can integrate with external systems such as ERP databases (e.g., SQL Server) to synchronize products and inventory in real time.
-Key Features
-Multi-tenant architecture (multiple stores within a single platform)
-Product catalog with images and pricing
-Shopping cart and order processing
-Inventory control with stock reservation logic
-Optional payment integrations
-Location-based delivery support
-Scalable backend built with Node.js, Express, Prisma, and PostgreSQL
-Modern frontend built with React
+* Product catalog with real-time stock visibility
+* Support for fractional purchases (e.g., small quantities based on customer budget)
+* Fast order creation and processing
+* Optional stock reservation system to prevent overselling
+* Delivery and in-store pickup workflows
 
-Vendly aims to bridge the gap between traditional local commerce and modern digital sales channels, making it easier for businesses to adopt online selling without changing how they already operate.
+The system is designed to be flexible:
+
+* It can run as a standalone solution for small businesses without existing infrastructure
+* It can integrate with external systems such as ERP databases (e.g., SQL Server) for inventory synchronization
+
+Key Features:
+
+* Multi-tenant architecture (multiple stores within a single platform)
+* Inventory-aware product catalog
+* Shopping cart and order management
+* Location-aware delivery logic
+* Modular backend built with Node.js, Express, Prisma, and PostgreSQL
+* Modern frontend with React and mobile support via React Native
+
+Vendly aims to bridge the gap between traditional neighborhood commerce and digital sales, enabling small businesses to modernize without disrupting how they already operate.
+
