@@ -1,0 +1,87 @@
+# =========================
+# DEPENDENCIES
+# =========================
+node_modules
+**/node_modules
+
+# =========================
+# ENV FILES
+# =========================
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+**/.env
+
+# =========================
+# BUILD OUTPUTS
+# =========================
+dist
+build
+.next
+out
+.expo
+web-build
+
+# =========================
+# TURBO / MONOREPO CACHE
+# =========================
+.turbo
+.cache
+
+# =========================
+# LOGS
+# =========================
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# OS FILES
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# TYPESCRIPT
+# =========================
+*.tsbuildinfo
+
+# =========================
+# PRISMA
+# =========================
+prisma/dev.db
+prisma/*.db
+
+# =========================
+# NEXT.JS
+# =========================
+.next/cache
+
+# =========================
+# EXPO / REACT NATIVE
+# =========================
+.expo/
+.expo-shared/
+android/
+ios/
+*.jks
+*.p8
+*.p12
+*.mobileprovision
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# OPTIONAL
+# =========================
+coverage
+.nyc_output
